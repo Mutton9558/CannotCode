@@ -1,53 +1,40 @@
 import noisereduce as nr
 import librosa
-from jiwer import wer, Compose, RemovePunctuation, ToLowerCase, RemoveWhiteSpace
-import streamlit as st
+from jiwer import wer
 import soundfile as sf
 import os
-from pydub import AudioSegment
-import whisper
+import whisperx
 
-model = whisper.load_model("base")
+# Load WhisperX model
+device = "cpu"
+model = whisperx.load_model("base", device=device, compute_type="float32")
 
-transformation = Compose([
-    RemovePunctuation(),
-    ToLowerCase(),
-    RemoveWhiteSpace()
-])
+def fast_noise_reduction(file):
+    # Load audio in mono, 16kHz (same as model expectation)
+    y, sr = librosa.load(file, sr=16000, mono=True)
 
-def noiseReduction(file):
-    sound = AudioSegment.from_file(file)
-    sound = sound.set_channels(1).set_frame_rate(16000).set_sample_width(2)
-    sound.export(file, format="wav")
+    # Fast noise reduction
+    reduced = nr.reduce_noise(y=y, sr=sr, prop_decrease=0.7)
 
-    # Load noisy audio
-    y, sr_rate = librosa.load(file, sr=None)
+    # Save to new file
+    denoised_file = f"{os.path.splitext(file)[0]}_denoised.wav"
+    sf.write(denoised_file, reduced, sr, subtype='PCM_16')
 
-    # Apply noise reduction
-    reduced_noise = nr.reduce_noise(y=y, sr=sr_rate)
-
-    # Save clean audio (proper PCM WAV)
-    output_file = f"{os.path.splitext(os.path.basename(file))[0]}_denoised.wav"
-    sf.write(output_file, reduced_noise, sr_rate, subtype='PCM_16')
+    return denoised_file
 
 def transcribe(audio_path):
-    result = model.transcribe(audio_path)
-    return result["text"]
+    result = model.transcribe(audio_path, language="en")
+    return " ".join([seg['text'] for seg in result.get('segments', [])])
 
 def test(file, ref):
-    noiseReduction(file)
+    denoised_file = fast_noise_reduction(file)
 
     original_text = transcribe(file)
-    cleaned_text = transcribe(f"{os.path.splitext(os.path.basename(file))[0]}_denoised.wav")
-
-    # Normalize all texts
-    norm_ref = transformation(ref)
-    norm_original = transformation(original_text)
-    norm_cleaned = transformation(cleaned_text)
+    cleaned_text = transcribe(denoised_file)
 
     print("Original Text:", original_text)
     print("Denoised Text:", cleaned_text)
-    print(f"Original Error Percentage: {wer(norm_ref, norm_original)*100:.2f}%")
-    print(f"Denoised Error Percentage: {wer(norm_ref, norm_cleaned)*100:.2f}%")
+    print(f"Original WER: {wer(ref, original_text) * 100:.2f}%")
+    print(f"Denoised WER: {wer(ref, cleaned_text) * 100:.2f}%")
 
-test("test3.wav", "Show me the summary of my first 5 rides")
+test("test1.wav", "Show me summary of my last five rides.")
