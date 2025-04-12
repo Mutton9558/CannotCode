@@ -2,6 +2,8 @@
 The Future of E-hailing Assistance.
 <br>
 Presentation slide link: https://www.canva.com/design/DAGkbAjF6b8/WEQJ7Of1sp_fGDtdeJpZsw/view?utm_content=DAGkbAjF6b8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=he76b28136e
+<br>
+Figma Prototype: https://www.figma.com/proto/SmGRMb6lwySiwyFaa2JJMM/Untitled?node-id=0-1&t=0rdaoBLmIWh759WF-1
 
 # What does it do?
 Dexistant is an AI voice-based assistant that provides guidance and help to drivers who are on the road.
@@ -48,8 +50,6 @@ python app.py
 1. User interface
 <br>
 Sneak peek 😉:
-<br>
-Figma: https://www.figma.com/proto/SmGRMb6lwySiwyFaa2JJMM/Untitled?node-id=0-1&t=0rdaoBLmIWh759WF-1
 <br>
 <img src="https://github.com/user-attachments/assets/c5f8537f-cf01-423a-a5cb-e0a9c40b3a2f">
 
