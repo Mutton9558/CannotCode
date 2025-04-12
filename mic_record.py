@@ -48,5 +48,3 @@ def record_on_voice():
         print(f"✅ Saved recording to: {OUTPUT_FILENAME}")
     else:
         print("⚠️ No voice detected.")
-
-record_on_voice()
