@@ -12,7 +12,7 @@ This greatly improves the safety of drivers on the road.
 Dexistant uses a bunch of python libraries co-existing in harmony to deliver responses to users. 
 User's audio is recorded as the app is running and then sent for audio processing. Audio is sent through a noise suppression filter and then
 sent through a second layer of filtering by cutting off further background noise below a certain threshold. The audio is then transcribed into text before
-being sent to a Language Learning Model (GPT). The model processes the information and then is sent back as a response.
+being sent to a Language Learning Model (Google Flan T5). The model processes the information and then is sent back as a response.
 
 # Test data
 ### Noise Reduction graph from test audio
