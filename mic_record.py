@@ -3,7 +3,7 @@ import numpy as np
 import scipy.io.wavfile as wav
 
 THRESHOLD = 0.05
-SILENCE_DURATION = 5.0
+SILENCE_DURATION = 2.0
 SAMPLE_RATE = 16000
 FRAME_DURATION = 0.1
 FRAME_SIZE = int(SAMPLE_RATE * FRAME_DURATION)
@@ -48,3 +48,5 @@ def record_on_voice():
         print(f"✅ Saved recording to: {OUTPUT_FILENAME}")
     else:
         print("⚠️ No voice detected.")
+
+record_on_voice()
