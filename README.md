@@ -13,7 +13,10 @@ sent through a second layer of filtering by cutting off further background noise
 being sent to a Language Learning Model (GPT). The model processes the information and then is sent back as a response.
 
 # Test data
-Coming Soon
+### Noise Reduction graph from test audio
+Avg rate: 44.08%
+<br>
+<img src="https://github.com/user-attachments/assets/92626d4e-a214-446e-a194-cccaf349161d">
 
 # Installation Guide
 ## Prerequisities
@@ -44,5 +47,7 @@ python app.py
 <br>
 Sneak peek 😉:
 <br>
-<img src="https://github.com/user-attachments/assets/07b2c113-df11-4299-a04a-d973610722b0">
+Figma: https://www.figma.com/proto/SmGRMb6lwySiwyFaa2JJMM/Untitled?node-id=0-1&t=0rdaoBLmIWh759WF-1
+<br>
+<img src="https://github.com/user-attachments/assets/c5f8537f-cf01-423a-a5cb-e0a9c40b3a2f">
 
