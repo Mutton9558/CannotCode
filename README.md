@@ -23,8 +23,8 @@ Coming Soon
 ## Steps to install
 1. Clone the repository
 ```
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+git clone https://github.com/Mutton9558/CannotCode
+cd CannotCode
 ```
 2. Install dependencies
 ```
