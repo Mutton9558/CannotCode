@@ -32,8 +32,8 @@ Avg rate: 44.08%
 ## Steps to install
 1. Clone the repository
 ```
-git clone https://github.com/Mutton9558/CannotCode
-cd CannotCode
+git clone https://github.com/Mutton9558/Dexistant
+cd Dexistant
 ```
 2. Install dependencies
 ```
